@@ -21,15 +21,9 @@ class FragmentOne : Fragment() {
 
     lateinit var imageView: Array<Int>
     lateinit var artistName: Array<String>
-    lateinit var music: Array<String>
-    lateinit var albumImage: Array<Int>
-    lateinit var albumName: Array<String>
 
-    private lateinit var musicAdapter: MusicAdapter
-    private lateinit var albumAdapter: MusicAdapter
-
-
-
+//    private lateinit var musicAdapter: MusicAdapter
+//    private lateinit var albumAdapter: MusicAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -45,6 +39,7 @@ class FragmentOne : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         recyclerView = view.findViewById((R.id.recyclerview_fragment))
         dataInitializa()
         val layoutManager = LinearLayoutManager(context)
@@ -53,25 +48,27 @@ class FragmentOne : Fragment() {
         recyclerView.setHasFixedSize(true)
         adapter = MusicAdapter(musicArrayList)
         recyclerView.adapter = adapter
-        adapter.onItemClick = { position,  ->
-            val action = FragmentOneDirections.actionFragmentOneToFragmentTwo()
-            findNavController().navigate(action)
-        }
+
+//        adapter.onItemClick = { position,  ->
+//            val action = FragmentOneDirections.actionFragmentOneToFragmentTwo()
+//            findNavController().navigate(action)
+//        }
     }
+
 
     private fun dataInitializa(){
         musicArrayList = arrayListOf<Music>()
         imageView = arrayOf(
             R.drawable.svt_,
-            R.drawable.svt_,
-            R.drawable.svt_,
-            R.drawable.svt_,
-            R.drawable.svt_,
-            R.drawable.svt_,
-            R.drawable.svt_,
-            R.drawable.svt_,
-            R.drawable.svt_,
-            R.drawable.svt_,
+            R.drawable.bts,
+            R.drawable.blackpink,
+            R.drawable.pentagon,
+            R.drawable.exo,
+            R.drawable.gidle2,
+            R.drawable.txt,
+            R.drawable.aespa,
+            R.drawable.newjeans,
+            R.drawable.enhypen,
         )
 
         artistName = arrayOf(
@@ -86,15 +83,6 @@ class FragmentOne : Fragment() {
             getString(R.string.artist_9),
             getString(R.string.artist_10),
         )
-
-        albumImage = arrayOf(
-            R.drawable.teen_age_svt,
-            R.drawable.ftc_svt,
-            R.drawable.attaca_svt,
-        )
-
-
-
         for(i in imageView.indices) {
             val music = Music(imageView[i], artistName[i])
             musicArrayList.add(music)

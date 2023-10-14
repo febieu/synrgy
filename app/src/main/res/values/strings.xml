@@ -4,18 +4,12 @@
     <string name="artist_2">BTS</string>
     <string name="artist_3">BLACKPINK</string>
     <string name="artist_4">PENTAGON</string>
-    <string name="artist_5">WINNER</string>
+    <string name="artist_5">EXO</string>
     <string name="artist_6">G-IDLE</string>
-    <string name="artist_7">Wanna One</string>
+    <string name="artist_7">TXT</string>
     <string name="artist_8">AESPA</string>
     <string name="artist_9">NEW JEANS</string>
-    <string name="artist_10">EXO</string>
-
-    <string name="album_1">Attaca</string>
-    <string name="album_2">FML</string>
-    <string name="album_3">Teen Age</string>
-
-    <string name="album_4">IDOL</string>
+    <string name="artist_10">ENHYPEN</string>
 
 
 </resources>

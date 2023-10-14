@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
     app:startDestination="@id/fragmentOne">
 
@@ -11,11 +12,17 @@
         <action
             android:id="@+id/action_fragmentOne_to_fragmentTwo"
             app:destination="@id/fragmentTwo" >
+            <argument
+                android:name="index"
+                app:argType="integer"
+                android:defaultValue="-1"/>
         </action>
-
     </fragment>
     <fragment
         android:id="@+id/fragmentTwo"
         android:name="com.example.challenge3.FragmentTwo"
-        android:label="FragmentTwo" />
+        android:label="FragmentTwo" >
+
+    </fragment>
+
 </navigation>

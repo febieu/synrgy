@@ -7,30 +7,19 @@ import android.widget.AdapterView.OnItemClickListener
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 
-class MusicAdapter(private val musicList: ArrayList<Music>):
+class MusicAdapter(private val musicList: ArrayList<Music>,
+    ):
     RecyclerView.Adapter<MusicAdapter.MusicViewHolder>() {
 
-    private lateinit var mListener: OnItemClickListener
-
-    var onItemClick : ((Music) -> Unit)? = null
-
-    fun setOnClickListener(listener: OnItemClickListener){
-        mListener = listener
-    }
+    private var onItemClick : ((Music) -> Unit)? = null
 
     class MusicViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageView: ImageView = itemView.findViewById(R.id.image_view)
         val textView: TextView = itemView.findViewById(R.id.text_view)
-
-//        init{
-//            itemView.setOnClickListener{
-//                listener.onItemClick(adapterPosition)
-//
-//            }
-
-        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MusicViewHolder {
         val itemView = LayoutInflater.from(parent.context)
@@ -42,15 +31,28 @@ class MusicAdapter(private val musicList: ArrayList<Music>):
         return MusicViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: MusicViewHolder,  position: Int) {
+    override fun onBindViewHolder(
+        holder: MusicViewHolder,
+        position: Int
+    ) {
         val music = musicList[position]
         holder.imageView.setImageResource(music.image)
         holder.textView.text = music.name
-        }
-//        holder.itemView.setOnClickListener {
-//            onItemClick?.invoke(music)
+        holder.itemView.setOnClickListener {
+            onItemClick?.invoke(music)
+            val action = FragmentOneDirections.actionFragmentOneToFragmentTwo()
+            it.findNavController().navigate(action)
+            }
+
+//            itemClickListener= { position ->
+//                val action = FragmentOneDirections.actionFragmentOneToFragmentTwo(position)
+//                it.findNavController().navigate(action)
+//            itemClickListener?.invoke(music)
+//            //onItemClick?.invoke(music)
 //            val action = FragmentOneDirections.actionFragmentOneToFragmentTwo()
-//            it.findNavController().navigate(action)}
+//            it.findNavController().navigate(action)
+
+    }
     override fun getItemCount(): Int {
         return musicList.size
     }
