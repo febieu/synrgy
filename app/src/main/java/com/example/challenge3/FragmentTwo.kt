@@ -1,5 +1,7 @@
 package com.example.challenge3
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -57,6 +59,8 @@ class FragmentTwo : Fragment() {
 
         //handleClick(index)
         svtData()
+        btsData()
+        blackpinkData()
 
         val layoutManager = LinearLayoutManager(context)
         recyclerView = view.findViewById((R.id.recyclerview_fragment_two))
@@ -64,6 +68,25 @@ class FragmentTwo : Fragment() {
         recyclerView.setHasFixedSize(true)
         adapter = AlbumAdapter(albumArrayList)
         recyclerView.adapter = adapter
+        val dataAlbum = svtData()
+        adapter.onItemClick = {
+            for (album in svtData()){
+                val google = "https://www.google.com/search?q=${album.name}"
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(google))
+                startActivity(intent)
+            }
+            for (album in btsData()){
+                val google = "https://www.google.com/search?q=${album.name}"
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(google))
+                startActivity(intent)
+            }
+            for (album in blackpinkData()){
+                val google = "https://www.google.com/search?q=${album.name}"
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(google))
+                startActivity(intent)
+            }
+
+        }
     }
 
     private fun getDataForPosition(position: Int): Music {
@@ -71,7 +94,7 @@ class FragmentTwo : Fragment() {
     }
 
 
-    private fun svtData() {
+    private fun svtData(): ArrayList<Album> {
         albumArrayList = arrayListOf<Album>()
         imageView = arrayOf(
             R.drawable.attaca_svt,
@@ -88,9 +111,10 @@ class FragmentTwo : Fragment() {
             val album = Album(imageView[i], albumName[i])
             albumArrayList.add(album)
         }
+        return albumArrayList
     }
 
-    private fun btsData() {
+    private fun btsData(): ArrayList<Album> {
         albumArrayList = arrayListOf<Album>()
         imageView = arrayOf(
             R.drawable.be_bts,
@@ -107,9 +131,10 @@ class FragmentTwo : Fragment() {
             val album = Album(imageView[i], albumName[i])
             albumArrayList.add(album)
         }
+        return albumArrayList
     }
 
-    private fun blackpinkData() {
+    private fun blackpinkData(): ArrayList<Album> {
         albumArrayList = arrayListOf<Album>()
         imageView = arrayOf(
             R.drawable.squaretwo,
@@ -126,6 +151,7 @@ class FragmentTwo : Fragment() {
             val album = Album(imageView[i], albumName[i])
             albumArrayList.add(album)
         }
+        return albumArrayList
     }
 
 }
